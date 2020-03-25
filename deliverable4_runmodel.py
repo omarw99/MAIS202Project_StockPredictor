@@ -9,10 +9,11 @@ Original file is located at
 
 from deliverable4_deploymodel import *
 
+#DO NOT CHANGE THIS BLOCK
 #SECTOR OPTIONS
 sectorOptions = ["basicMaterials", "communicationServices", "consumerCyclical", "consumerDefensive", "energy", "financialServices", "healthcare", "industrials", "realEstate", "technology", "utilities"]
 
-###YOU CAN CHANGE THIS
+###YOU CAN CHANGE THIS BLOCK
 #INCOME STATEMENT ACCOUNTS
 prevRevenue = 0
 currRevenue = 0
@@ -22,7 +23,7 @@ ebit = 0
 interestExpense = 0
 netIncome = 0
 
-###YOU CAN CHANGE THIS
+###YOU CAN CHANGE THIS BLOCK
 #BALANCE SHEET ACCOUNTS
 cash = 0
 accountsReceivable = 0
@@ -35,17 +36,18 @@ totalLiabilities = 0
 preferredDividends = 0
 totalEquity = 0
 
-###YOU CAN CHANGE THIS
+###YOU CAN CHANGE THIS BLOCK
 #CASH FLOW STATEMENT ACCOUNTS
 capex = 0
 
-###YOU CAN CHANGE THIS
+###YOU CAN CHANGE THIS BLOCK
 #MARKET INFORMATION
 outstandingShares = 0
 dividendPerShare = 0
 currPrice = 0
 sector = sectorOptions[0]
 
+##DO NOT CHANGE ANYTHING BELOW THIS COMMENT
 listOfVars = [prevRevenue, currRevenue, cogs, ebitda, ebit, interestExpense, netIncome, cash, accountsReceivable, 
 inventory, currAssets, totalAssets, accountsPayable, currLiabilities, totalLiabilities, preferredDividends, totalEquity,
 capex, outstandingShares, dividendPerShare, currPrice, sector]
