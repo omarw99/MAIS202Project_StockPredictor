@@ -21,11 +21,11 @@ from sklearn.model_selection import train_test_split
 import pickle
 
 #READ IN THE APPROPRIATE DATA AS YEAR SPECIFIC DATAFRAMES
-datapath_2014 = "https://raw.githubusercontent.com/omarw99/MAIS202FinalProject/master/2014_Financial_Data.csv"
-datapath_2015 = "https://raw.githubusercontent.com/omarw99/MAIS202FinalProject/master/2015_Financial_Data.csv"
-datapath_2016 = "https://raw.githubusercontent.com/omarw99/MAIS202FinalProject/master/2016_Financial_Data.csv"
-datapath_2017 = "https://raw.githubusercontent.com/omarw99/MAIS202FinalProject/master/2017_Financial_Data.csv"
-datapath_2018 = "https://raw.githubusercontent.com/omarw99/MAIS202FinalProject/master/2018_Financial_Data.csv"
+datapath_2014 = "https://raw.githubusercontent.com/omarw99/MAIS202Project_StockPredictor/master/Dataset/2014_Financial_Data.csv"
+datapath_2015 = "https://raw.githubusercontent.com/omarw99/MAIS202Project_StockPredictor/master/Dataset/2015_Financial_Data.csv"
+datapath_2016 = "https://raw.githubusercontent.com/omarw99/MAIS202Project_StockPredictor/master/Dataset/2016_Financial_Data.csv"
+datapath_2017 = "https://raw.githubusercontent.com/omarw99/MAIS202Project_StockPredictor/master/Dataset/2017_Financial_Data.csv"
+datapath_2018 = "https://raw.githubusercontent.com/omarw99/MAIS202Project_StockPredictor/master/Dataset/2018_Financial_Data.csv"
 
 df_2014 = pd.read_csv(datapath_2014)
 df_2015 = pd.read_csv(datapath_2015)
