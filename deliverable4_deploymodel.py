@@ -78,8 +78,10 @@ def vectorizeInput(listOfFinancialRatios, listOfVars):
   else:
     dictOfRatios['dividendYield']  =  listOfVars[19] / listOfVars[20]
 
-
-  dictOfRatios['EPS']  =  (listOfVars[6] - listOfVars[15]) / listOfVars[18]
+  if listOfVars[18] == 0:
+    dictOfRatios['EPS']  =  0
+  else:
+    dictOfRatios['EPS']  =  (listOfVars[6] - listOfVars[15]) / listOfVars[18]
 
   if (dictOfRatios['EPS'] == 0):
     dictOfRatios['PE ratio']  =  0
