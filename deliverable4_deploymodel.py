@@ -27,26 +27,66 @@ def getListOfFinancialRatios(mini_df):
 def vectorizeInput(listOfFinancialRatios, listOfVars):
   dictOfRatios = dict.fromkeys(listOfFinancialRatios , 0)
 
-  dictOfRatios['Revenue Growth']  =  (listOfVars[1] - listOfVars[0]) / listOfVars[0]
+  if listOfVars[0] == 0:
+    dictOfRatios['Revenue Growth']  =  0
+  else:
+    dictOfRatios['Revenue Growth']  =  (listOfVars[1] - listOfVars[0]) / listOfVars[0]
+
+  if listOfVars[5] == 0:
+    dictOfRatios['interestCoverage']  =  0
+  else:
+    dictOfRatios['interestCoverage']  =  listOfVars[4] / listOfVars[5]
+
+  if listOfVars[8] == 0:
+    dictOfRatios['Receivables Turnover']  =  0
+  else:
+    dictOfRatios['Receivables Turnover']  =  listOfVars[1] / listOfVars[8]
+
+  if listOfVars[9] == 0:
+    dictOfRatios['Inventory Turnover']  =  0
+  else:
+    dictOfRatios['Inventory Turnover']  =  listOfVars[2] / listOfVars[9]
+
+  if listOfVars[12] == 0:
+    dictOfRatios['Payables Turnover']  =  0
+  else:
+    dictOfRatios['Payables Turnover']  =  listOfVars[2] / listOfVars[12]
+
+  if listOfVars[13] == 0:
+    dictOfRatios['currentRatio']  =  0
+    dictOfRatios['quickRatio']  =  0
+    dictOfRatios['cashRatio']  =  0
+  else:
+    dictOfRatios['currentRatio']  =  listOfVars[10] / listOfVars[13]
+    dictOfRatios['quickRatio']  =  (listOfVars[10] - listOfVars[9]) / listOfVars[13]
+    dictOfRatios['cashRatio']  =  listOfVars[7] / listOfVars[13]
+
+  if listOfVars[16] == 0:
+    dictOfRatios['returnOnEquity']  =  0
+    dictOfRatios['debtEquityRatio']  =  0
+  else:
+    dictOfRatios['returnOnEquity']  =  listOfVars[6] / listOfVars[16]
+    dictOfRatios['debtEquityRatio']  =  listOfVars[14] / listOfVars[16]
+
   dictOfRatios['EPS']  =  (listOfVars[6] - listOfVars[15]) / listOfVars[18]
+
+  if (dictOfRatios['EPS'] == 0):
+    dictOfRatios['PE ratio']  =  0
+  else:
+    dictOfRatios['PE ratio']  =  listOfVars[20] / dictOfRatios['EPS']
+
+  if listOfVars[6] == listOfVars[17]:
+    dictOfRatios['priceToFreeCashFlowsRatio']  =  0
+  else:
+    dictOfRatios['priceToFreeCashFlowsRatio']  =  (listOfVars[20] * listOfVars[18]) / (listOfVars[6] - listOfVars[17])
+
   dictOfRatios['Dividend per Share']  =  listOfVars[19]
   dictOfRatios['EBITDA Margin']  =  listOfVars[3] / listOfVars[1]
   dictOfRatios['Net Profit Margin']  =  listOfVars[6] / listOfVars[1]
   dictOfRatios['priceToSalesRatio']  =  (listOfVars[20] * listOfVars[18]) / listOfVars[1]
-  dictOfRatios['priceToFreeCashFlowsRatio']  =  (listOfVars[20] * listOfVars[18]) / (listOfVars[6] - listOfVars[17])
   dictOfRatios['dividendYield']  =  listOfVars[19] / listOfVars[20]
   dictOfRatios['grossProfitMargin']  =  (listOfVars[1] - listOfVars[2]) / listOfVars[1]
-  dictOfRatios['returnOnEquity']  =  listOfVars[6] / listOfVars[16]
-  dictOfRatios['currentRatio']  =  listOfVars[10] / listOfVars[13]
-  dictOfRatios['quickRatio']  =  (listOfVars[10] - listOfVars[9]) / listOfVars[13]
-  dictOfRatios['cashRatio']  =  listOfVars[7] / listOfVars[13]
   dictOfRatios['debtRatio']  =  listOfVars[14] / listOfVars[11]
-  dictOfRatios['debtEquityRatio']  =  listOfVars[14] / listOfVars[16]
-  dictOfRatios['interestCoverage']  =  listOfVars[4] / listOfVars[5]
-  dictOfRatios['PE ratio']  =  listOfVars[20] / dictOfRatios['EPS']
-  dictOfRatios['Receivables Turnover']  =  listOfVars[1] / listOfVars[8]
-  dictOfRatios['Payables Turnover']  =  listOfVars[2] / listOfVars[12]
-  dictOfRatios['Inventory Turnover']  =  listOfVars[2] / listOfVars[9]
 
   if (listOfVars[21] == "basicMaterials"):
     dictOfRatios['Sector_Basic Materials']  =  1
@@ -79,7 +119,7 @@ def vectorizeInput(listOfFinancialRatios, listOfVars):
 def preprocess_sample_point(vector):
   vector = vector.reshape(1, -1)
   result = model.predict(vector)
-  return ("Expected price change in the next year: {}%".format(round(result[0], 2)))
+  return str(round(result[0], 2)) + "%"
 
 def run_model(listOfVars):
   vector = vectorizeInput(getListOfFinancialRatios(mini_df), listOfVars)
