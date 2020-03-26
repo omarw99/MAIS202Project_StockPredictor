@@ -68,6 +68,17 @@ def vectorizeInput(listOfFinancialRatios, listOfVars):
     dictOfRatios['returnOnEquity']  =  listOfVars[6] / listOfVars[16]
     dictOfRatios['debtEquityRatio']  =  listOfVars[14] / listOfVars[16]
 
+  if listOfVars[11] == 0:
+    dictOfRatios['debtRatio']  =  0
+  else:
+    dictOfRatios['debtRatio']  =  listOfVars[14] / listOfVars[11]
+
+  if listOfVars[20] == 0:
+    dictOfRatios['dividendYield']  =  0
+  else:
+    dictOfRatios['dividendYield']  =  listOfVars[19] / listOfVars[20]
+
+
   dictOfRatios['EPS']  =  (listOfVars[6] - listOfVars[15]) / listOfVars[18]
 
   if (dictOfRatios['EPS'] == 0):
@@ -80,13 +91,19 @@ def vectorizeInput(listOfFinancialRatios, listOfVars):
   else:
     dictOfRatios['priceToFreeCashFlowsRatio']  =  (listOfVars[20] * listOfVars[18]) / (listOfVars[6] - listOfVars[17])
 
+
+  if listOfVars[1] == 0:
+    dictOfRatios['EBITDA Margin']  =  0
+    dictOfRatios['Net Profit Margin']  =  0
+    dictOfRatios['priceToSalesRatio']  =  0
+    dictOfRatios['grossProfitMargin']  =  0
+  else:
+    dictOfRatios['EBITDA Margin']  =  listOfVars[3] / listOfVars[1]
+    dictOfRatios['Net Profit Margin']  =  listOfVars[6] / listOfVars[1]
+    dictOfRatios['priceToSalesRatio']  =  (listOfVars[20] * listOfVars[18]) / listOfVars[1]
+    dictOfRatios['grossProfitMargin']  =  (listOfVars[1] - listOfVars[2]) / listOfVars[1]
+
   dictOfRatios['Dividend per Share']  =  listOfVars[19]
-  dictOfRatios['EBITDA Margin']  =  listOfVars[3] / listOfVars[1]
-  dictOfRatios['Net Profit Margin']  =  listOfVars[6] / listOfVars[1]
-  dictOfRatios['priceToSalesRatio']  =  (listOfVars[20] * listOfVars[18]) / listOfVars[1]
-  dictOfRatios['dividendYield']  =  listOfVars[19] / listOfVars[20]
-  dictOfRatios['grossProfitMargin']  =  (listOfVars[1] - listOfVars[2]) / listOfVars[1]
-  dictOfRatios['debtRatio']  =  listOfVars[14] / listOfVars[11]
 
   if (listOfVars[21] == "basicMaterials"):
     dictOfRatios['Sector_Basic Materials']  =  1
